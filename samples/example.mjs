@@ -8,10 +8,12 @@ if (!USER || !PASS) {
   process.exit(1);
 }
 
-const classClient = await createClientAsync(USER, PASS);
+const client = await createClientAsync(USER, PASS);
 
-const json = await classClient.fetchAlbumsInClass();
-const outpath = `albums.json`;
+const classAlbums = await client.fetchAlbumsInClass();
+await fs.writeFile(`albums.json`, JSON.stringify(classAlbums, null, 2));
+console.log(`write to albums.json`);
 
-await fs.writeFile(outpath, JSON.stringify(json, null, 2));
-console.log(`write to ${outpath}`);
+const schoolAlbums = await client.fetchAlbumsInSchool();
+await fs.writeFile(`schoolAlbums.json`, JSON.stringify(schoolAlbums, null, 2));
+console.log(`write to schoolAlbums.json`);

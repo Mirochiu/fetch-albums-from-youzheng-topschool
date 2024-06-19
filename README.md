@@ -14,9 +14,11 @@
 import fs from 'node:fs/promises';
 import { createClientAsync } from 'fetch-albums-from-youzheng-topschool';
 
-const username = '<your-acc>';
-const password = '<your-pwd>';
-const client = createClient(username, password);
+const client = await createClientAsync('<your-acc>', '<your-pwd>');
+
 const albums = await classClient.fetchAlbumsInClass();
 await fs.writeFile(`albums.json`, JSON.stringify(albums, null, 2));
+
+const schoolAlbums = await client.fetchAlbumsInSchool();
+await fs.writeFile(`schoolAlbums.json`, JSON.stringify(schoolAlbums, null, 2));
 ```

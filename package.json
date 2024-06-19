@@ -1,6 +1,6 @@
 {
   "name": "fetch-albums-from-youzheng-topschool",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "type": "module",
   "description": "fetch albums from youzheng-topschool-tw",
   "exports": {
