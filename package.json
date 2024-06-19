@@ -1,0 +1,36 @@
+{
+  "name": "fetch-albums-from-youzheng-topschool",
+  "version": "0.0.2",
+  "type": "module",
+  "description": "fetch albums from youzheng-topschool-tw",
+  "exports": {
+    "import": "./src/index.mjs",
+    "types": "./src/index.d.ts"
+  },
+  "scripts": {
+    "test": "env-cmd -f .env node samples/example.mjs"
+  },
+  "keywords": [
+    "fetch",
+    "youzheng",
+    "javascript"
+  ],
+  "author": "Mirochiu (https://mirochiu.page)",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mirochiu/fetch-albums-from-youzheng-topschool"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^20.14.5",
+    "env-cmd": "^10.1.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.11",
+    "jsdom": "^24.1.0"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "include": [
+    "src/*.mjs"
+  ],
+  "compilerOptions": {
+    "allowJs": true,
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "types",
+    "declarationMap": true,
+    "target": "ES5"
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
