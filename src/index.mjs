@@ -35,7 +35,7 @@ const handleResponse = async (response) => {
         if (response.headers.has('Location'))
             location = response.headers.get('Location');
         if (location && !location.startsWith('http')) {
-            return `${BASE_URL}${location}`;
+            return new URL(location, BASE_URL).toString();
         }
         return location;
     };
@@ -148,12 +148,18 @@ const getLoginToken = async (Referer) => {
     }
 };
 
+// Regex：抓取 background-image 裡的 url(...) 內容
+const RegexImgUrl = /url\((['"])(.*?)\1\)/;
+
 const extractUrl = (u) => {
     if (u) {
-        const p = u.indexOf('url(');
-        const l = u.lastIndexOf(')');
-        if (p >= 0 && l >= 0) {
-            return u.substring(p + 4, l);
+        const r = RegexImgUrl.exec(u);
+        if (r !== null) {
+            const retval = r[2];
+            // console.debug(`accepted url:(${u.length}) ${u}`);
+            return retval;
+        } else {
+            // console.debug(`rejected url:(${u.length}) ${u}`);
         }
     }
     return undefined;
@@ -206,7 +212,7 @@ const removePrefix = (s, t) => {
     return s;
 }
 
-const caseInsensitiveSearchParams = (params) => new URLSearchParams(
+export const caseInsensitiveSearchParams = (params) => new URLSearchParams(
     Array.from(params, ([key, value]) => [key.toLowerCase(), value])
 );
 
